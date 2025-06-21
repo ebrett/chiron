@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'lib/claude_rails_setup/version'
+require_relative 'lib/chiron/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'chiron'
-  spec.version = ClaudeRailsSetup::VERSION
+  spec.version = Chiron::VERSION
   spec.authors = ['Brett McHargue']
-  spec.email = ['brett@example.com']
+  spec.email = ['ebrett@users.noreply.github.com']
 
   spec.summary = 'Initialize Claude AI workflow for Rails projects'
   spec.description = 'A Ruby gem that sets up Claude AI development workflows, PRD templates, ' \

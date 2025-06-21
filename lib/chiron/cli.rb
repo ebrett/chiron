@@ -7,7 +7,7 @@ require 'fileutils'
 require 'erb'
 require 'date'
 
-module ClaudeRailsSetup
+module Chiron
   class CLI < Thor
     def self.exit_on_failure?
       true
@@ -118,7 +118,7 @@ module ClaudeRailsSetup
 
     desc 'version', 'Show version'
     def version
-      say ClaudeRailsSetup::VERSION
+      say Chiron::VERSION
     end
 
     private
@@ -249,7 +249,7 @@ module ClaudeRailsSetup
     end
 
     def templates_path
-      ClaudeRailsSetup.templates_path
+      Chiron.templates_path
     end
 
     def error(message)

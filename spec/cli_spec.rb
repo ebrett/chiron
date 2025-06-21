@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'claude_rails_setup/cli'
+require 'chiron/cli'
 require 'tmpdir'
 require 'fileutils'
 
-RSpec.describe ClaudeRailsSetup::CLI do
+RSpec.describe Chiron::CLI do
   let(:cli) { described_class.new }
   let(:test_dir) { Dir.mktmpdir }
   let(:original_dir) { Dir.pwd }
@@ -58,7 +58,7 @@ RSpec.describe ClaudeRailsSetup::CLI do
 
   describe '#version' do
     it 'displays the version' do
-      expect { cli.version }.to output(/#{ClaudeRailsSetup::VERSION}/).to_stdout
+      expect { cli.version }.to output(/#{Chiron::VERSION}/).to_stdout
     end
   end
 end
