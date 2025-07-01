@@ -2,13 +2,20 @@
 
 ## Core Principles
 
-1. **Red**: Write a failing test first
+1. **Red**: Write a failing test first and **verify it fails**
 2. **Green**: Write minimal code to make the test pass
 3. **Refactor**: Improve the code while keeping tests green
 
+## Key: Always Verify Test Failure First
+
+**Critical**: Before writing implementation, run the test to confirm it fails for the expected reason. This prevents false positives and ensures your test actually validates the behavior.
+
 ## TDD Process
 
-### Step 1: Write a Failing Test
+### Step 1: Think Through Complex Features
+For complex functionality, use "think" to trigger extended thinking mode to plan your test strategy.
+
+### Step 2: Write a Failing Test
 ```ruby
 # spec/models/user_spec.rb
 it 'returns the full name' do
@@ -17,13 +24,14 @@ it 'returns the full name' do
 end
 ```
 
-### Step 2: Run Test (See it Fail)
+### Step 3: **VERIFY** Test Fails (Critical Step)
 ```bash
 bin/rspec spec/models/user_spec.rb
 # Expected failure: undefined method `full_name'
+# CONFIRM: Test fails for the RIGHT reason
 ```
 
-### Step 3: Write Minimal Code
+### Step 4: Write Minimal Code
 ```ruby
 # app/models/user.rb
 def full_name
@@ -31,13 +39,13 @@ def full_name
 end
 ```
 
-### Step 4: Run Test (See it Pass)
+### Step 5: Run Test (See it Pass)
 ```bash
 bin/rspec spec/models/user_spec.rb
 # All tests should pass
 ```
 
-### Step 5: Refactor if Needed
+### Step 6: Refactor if Needed
 ```ruby
 # Improved version
 def full_name
@@ -68,6 +76,8 @@ end
 - Never delete or modify tests just to make them pass
 - If a test is wrong, fix it and document why
 - Use `skip` or `pending` for incomplete tests
+- **Avoid overfitting**: Ensure tests validate real behavior, not just current implementation
+- Write tests that would catch regressions if the implementation changed
 
 ## Test Plan Management
 

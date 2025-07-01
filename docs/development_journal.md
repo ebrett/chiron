@@ -5,6 +5,41 @@ Chiron is a Ruby gem that helps Rails and Python developers set up Claude AI wor
 
 ---
 
+## 2025-07-01 - Enhancement: Claude Code Best Practices Integration
+**Developer(s)**: Claude Code | **Branch**: main | **Context**: User research into Claude Code best practices
+
+### What was accomplished today:
+- **Template Enhancement**: Updated Rails and Python CLAUDE.md templates with best practices from https://www.anthropic.com/engineering/claude-code-best-practices
+- **Extended Thinking Integration**: Added "think" triggers to workflow templates for complex problem solving
+- **Test Verification Focus**: Enhanced TDD template to emphasize test failure verification before implementation
+- **New Workflow Templates**: Created comprehensive Explore-Plan-Code-Commit and Visual Iteration workflows
+- **Tool Permissions Guidance**: Added tool customization sections to help developers manage Claude Code permissions
+- **Documentation Improvements**: Added quick documentation tips and conversational Q&A guidance
+
+### Technical decisions made:
+- **Incremental Enhancement**: Modified existing templates rather than replacing them to maintain backward compatibility
+- **Best Practice Integration**: Incorporated structured workflows (Explore-Plan-Code-Commit) recommended by Anthropic
+- **Visual Development Support**: Added dedicated workflow for screenshot-driven UI development
+- **Test Quality Focus**: Enhanced TDD workflow to prevent test overfitting and ensure proper failure verification
+
+### Implementation details:
+- **Updated Templates**: Both `rails/CLAUDE.md.erb` and `python/CLAUDE.md.erb` now include tool permissions, extended thinking, and visual development guidance
+- **New Workflow Files**: 
+  - `explore-plan-code-commit.md` - Structured development process
+  - `visual-iteration.md` - Screenshot-driven UI development
+- **Enhanced TDD**: Updated `test-driven.md` with failure verification and overfitting prevention
+- **Quality Assurance**: All 41 tests continue to pass, ensuring no breaking changes
+
+### Files modified:
+- `lib/chiron/templates/rails/CLAUDE.md.erb` - Added best practices sections
+- `lib/chiron/templates/python/CLAUDE.md.erb` - Added best practices sections  
+- `lib/chiron/templates/shared/commands/workflows/create-prd.md` - Added extended thinking trigger
+- `lib/chiron/templates/shared/commands/quality/test-driven.md` - Enhanced with failure verification
+- `lib/chiron/templates/shared/commands/workflows/explore-plan-code-commit.md` - New comprehensive workflow
+- `lib/chiron/templates/shared/commands/workflows/visual-iteration.md` - New UI development workflow
+
+---
+
 ## 2025-07-01 - Major Enhancement: Comprehensive Python Project Support
 **Developer(s)**: Claude Code | **Branch**: main | **Context**: User request for Python support
 

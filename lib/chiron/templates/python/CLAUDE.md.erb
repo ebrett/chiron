@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 <%= @project_name %> is a Python project<% if @python_framework == :django %> using Django framework<% elsif @python_framework == :fastapi %> using FastAPI framework<% elsif @python_framework == :flask %> using Flask framework<% end %>. [Add your project description here]
 
+## Tool Permissions & Customization
+
+```bash
+# View current tool permissions
+/permissions
+
+# Customize tools for specific sessions
+claude --allowedTools read,edit,bash --no-write  # Example: read-only session
+claude --allowedTools bash,read,write           # Example: development session
+```
+
 ## Development Commands
 
 **Important**: Use virtual environments for dependency isolation.
@@ -118,6 +129,17 @@ JWT_SECRET=your-jwt-secret
 
 ## Development Patterns
 
+### Explore-Plan-Code-Commit Workflow
+1. **Explore**: Read relevant files and understand context
+2. **Plan**: Use "think" to trigger extended thinking mode for complex problems
+3. **Code**: Implement solution incrementally with frequent testing
+4. **Commit**: Create clear commit messages explaining the change
+
+### Visual Development
+- Take screenshots for UI work using Claude Code's image reading
+- Iterate 2-3 times for visual improvements
+- Use incremental screenshots to track progress
+
 ### Code Organization
 <% if @python_framework == :django %>
 - Follow Django's app-based architecture
@@ -150,9 +172,10 @@ JWT_SECRET=your-jwt-secret
 ## Testing Standards
 
 - Write tests before implementation (TDD)
+- **Verify tests fail first** - Confirm tests fail before writing implementation
 - Use pytest fixtures for test data
 - Mock external dependencies
-- Aim for high test coverage
+- Aim for high test coverage but avoid "overfitting to the tests"
 - Test edge cases and error conditions
 
 <% if @python_framework == :django %>
@@ -182,11 +205,19 @@ def test_read_main():
 ```
 <% end %>
 
+## Quick Documentation Tips
+
+- Use `#` key to quickly document guidelines and patterns
+- Be specific in instructions to Claude
+- Course-correct early and often during development
+- Provide clear context and expectations
+
 ## Important Reminders
 
 - Always run tests before committing
-- Use semantic commit messages
+- Use semantic commit messages with clear explanations
 - Update the development journal for significant changes
 - Follow the pre-commit checklist in `.claude/commands/quality/pre-commit.md`
 - Keep dependencies updated in requirements.txt
 - Document API changes
+- Use conversational Q&A to explore unfamiliar parts of the codebase

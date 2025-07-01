@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 <%= @project_name %> is a Rails <%= Rails.version rescue "8.0.2" %> application. [Add your project description here]
 
+## Tool Permissions & Customization
+
+```bash
+# View current tool permissions
+/permissions
+
+# Customize tools for specific sessions
+claude --allowedTools read,edit,bash --no-write  # Example: read-only session
+claude --allowedTools bash,read,write           # Example: development session
+```
+
 ## Development Commands
 
 **Important**: Always use binstubs instead of `bundle exec` for better performance and consistency.
@@ -67,6 +78,17 @@ Required for development:
 
 ## Development Patterns
 
+### Explore-Plan-Code-Commit Workflow
+1. **Explore**: Read relevant files and understand context
+2. **Plan**: Use "think" to trigger extended thinking mode for complex problems
+3. **Code**: Implement solution incrementally with frequent testing
+4. **Commit**: Create clear commit messages explaining the change
+
+### Visual Development
+- Take screenshots for UI work using Claude Code's image reading
+- Iterate 2-3 times for visual improvements
+- Use incremental screenshots to track progress
+
 ### Component Architecture
 - Use ViewComponent for reusable UI elements (located in `app/components/`)
 - Follow Rails conventions with Hotwire for reactive interfaces
@@ -85,13 +107,23 @@ Required for development:
 ## Testing Standards
 
 - Write tests before implementation (TDD)
-- Maintain high test coverage
+- **Verify tests fail first** - Confirm tests fail before writing implementation
+- Maintain high test coverage but avoid "overfitting to the tests"
 - Use FactoryBot for test data
 - Follow RSpec best practices
+- Test both happy path and edge cases
+
+## Quick Documentation Tips
+
+- Use `#` key to quickly document guidelines and patterns
+- Be specific in instructions to Claude
+- Course-correct early and often during development
+- Provide clear context and expectations
 
 ## Important Reminders
 
 - Always run tests before committing
-- Use semantic commit messages
+- Use semantic commit messages with clear explanations
 - Update the development journal for significant changes
 - Follow the pre-commit checklist in `.claude/commands/quality/pre-commit.md`
+- Use conversational Q&A to explore unfamiliar parts of the codebase
