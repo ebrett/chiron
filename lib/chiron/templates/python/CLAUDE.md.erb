@@ -1,0 +1,192 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+<%= @project_name %> is a Python project<% if @python_framework == :django %> using Django framework<% elsif @python_framework == :fastapi %> using FastAPI framework<% elsif @python_framework == :flask %> using Flask framework<% end %>. [Add your project description here]
+
+## Development Commands
+
+**Important**: Use virtual environments for dependency isolation.
+
+```bash
+# Setup virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+<% if File.exist?('requirements-dev.txt') %>pip install -r requirements-dev.txt  # Development dependencies<% end %>
+
+<% if @python_framework == :django %>
+# Django specific
+python manage.py migrate
+python manage.py runserver
+python manage.py test
+<% elsif @python_framework == :fastapi %>
+# FastAPI specific
+uvicorn main:app --reload  # Or app:app depending on your structure
+<% elsif @python_framework == :flask %>
+# Flask specific
+flask run  # Or python app.py
+<% end %>
+
+# Testing
+pytest                               # Run all tests
+pytest tests/                        # Run specific test directory
+pytest tests/test_models.py          # Run single test file
+pytest -v                           # Verbose output
+pytest --cov=.                      # With coverage
+
+# Code quality
+black .                             # Format code
+flake8                              # Linting
+mypy .                              # Type checking (if configured)
+isort .                             # Sort imports
+```
+
+## Architecture Overview
+
+### Project Structure
+[Document your main modules and their purposes]
+
+### Core Services/Modules
+[List your service classes/modules and their purposes]
+
+<% if @python_framework == :django %>
+### Models & Database
+[Describe your Django models and relationships]
+
+### Views & URLs
+[Describe your view organization and URL patterns]
+<% elsif @python_framework == :fastapi %>
+### API Endpoints
+[Describe your API structure and main endpoints]
+
+### Schemas & Models
+[Describe your Pydantic models and database models]
+<% end %>
+
+## Technical Stack
+
+<% if @python_framework == :django %>
+- **Framework**: Django <%= options[:django_version] || "4.2+" %>
+- **Database**: PostgreSQL with Django ORM
+- **API**: Django REST Framework (if applicable)
+- **Frontend**: [Your frontend stack]
+<% elsif @python_framework == :fastapi %>
+- **Framework**: FastAPI
+- **Database**: [Your database] with SQLAlchemy/Tortoise-ORM
+- **API Documentation**: Automatic with Swagger/ReDoc
+- **Async Support**: Built-in async/await
+<% elsif @python_framework == :flask %>
+- **Framework**: Flask
+- **Database**: [Your database] with SQLAlchemy
+- **API**: Flask-RESTful (if applicable)
+<% else %>
+- **Language**: Python <%= `python --version 2>&1`.strip.split(' ')[1] rescue "3.x" %>
+- **Package Management**: pip/poetry/pipenv
+- **Testing**: pytest
+- **Code Quality**: black, flake8, mypy
+<% end %>
+- **Testing**: pytest with fixtures
+- **Type Checking**: mypy (optional but recommended)
+
+## Environment Variables
+
+Required for development:
+```
+# Add your required environment variables here
+<% if @python_framework == :django %>
+SECRET_KEY=your-secret-key
+DEBUG=True
+DATABASE_URL=postgresql://user:pass@localhost/dbname
+<% elsif @python_framework == :fastapi %>
+DATABASE_URL=postgresql://user:pass@localhost/dbname
+JWT_SECRET=your-jwt-secret
+<% end %>
+```
+
+## Python Conventions
+
+- Follow PEP 8 style guide
+- Use type hints where beneficial
+- Docstrings for all public functions/classes
+- Black for consistent formatting
+- Meaningful variable and function names
+
+## Development Patterns
+
+### Code Organization
+<% if @python_framework == :django %>
+- Follow Django's app-based architecture
+- Keep views thin, business logic in services/models
+- Use Django's built-in features (signals, middleware, etc.)
+<% elsif @python_framework == :fastapi %>
+- Organize routes by feature/domain
+- Use dependency injection
+- Leverage Pydantic for data validation
+- Keep endpoints focused and RESTful
+<% else %>
+- Organize code by feature/module
+- Use classes for complex state
+- Functions for simple transformations
+- Separate concerns clearly
+<% end %>
+
+### PRD Workflow
+- Use `.claude/commands/workflows/create-prd.md` for structured feature development
+- PRDs should be saved in `/tasks/` directory as `prd-[feature-name].md`
+- Follow the clarifying questions process before implementation
+
+### Code Quality
+- Black for consistent formatting
+- Flake8 for linting
+- pytest for testing
+- Type hints with mypy (optional)
+- Comprehensive test coverage
+
+## Testing Standards
+
+- Write tests before implementation (TDD)
+- Use pytest fixtures for test data
+- Mock external dependencies
+- Aim for high test coverage
+- Test edge cases and error conditions
+
+<% if @python_framework == :django %>
+### Django Testing
+```python
+from django.test import TestCase, Client
+from .models import MyModel
+
+class MyModelTestCase(TestCase):
+    def setUp(self):
+        self.obj = MyModel.objects.create(name="Test")
+    
+    def test_string_representation(self):
+        self.assertEqual(str(self.obj), "Test")
+```
+<% elsif @python_framework == :fastapi %>
+### FastAPI Testing
+```python
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_read_main():
+    response = client.get("/")
+    assert response.status_code == 200
+```
+<% end %>
+
+## Important Reminders
+
+- Always run tests before committing
+- Use semantic commit messages
+- Update the development journal for significant changes
+- Follow the pre-commit checklist in `.claude/commands/quality/pre-commit.md`
+- Keep dependencies updated in requirements.txt
+- Document API changes

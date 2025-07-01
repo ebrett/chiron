@@ -1,6 +1,6 @@
 # Chiron
 
-A Ruby gem that initializes Claude AI development workflows, PRD templates, and journaling system for Rails projects. Named after the wise centaur who mentored heroes, Chiron helps you quickly set up a structured development process that integrates seamlessly with Claude Code.
+A Ruby gem that initializes Claude AI development workflows, PRD templates, and journaling system for Rails and Python projects. Named after the wise centaur who mentored heroes, Chiron helps you quickly set up a structured development process that integrates seamlessly with Claude Code.
 
 ## Features
 
@@ -34,15 +34,16 @@ gem install chiron
 
 ### Initialize Claude Workflow
 
-In your Rails project root:
+In your project root (Rails or Python):
 
 ```bash
 chiron init
 ```
 
 This will:
+- Auto-detect your project type (Rails/Python)
 - Create `.claude/commands/` directory with workflow templates
-- Generate `CLAUDE.md` with project-specific configuration
+- Generate `CLAUDE.md` with language-specific configuration
 - Set up `tasks/` directory for PRDs and task lists
 - Initialize development journal in `docs/`
 - Update `.gitignore` appropriately
@@ -50,8 +51,12 @@ This will:
 ### Command Options
 
 ```bash
-# Initialize with options
+# Initialize Rails project with options
 chiron init --project-name="MyApp" --with-viewcomponents
+
+# Initialize Python project with framework-specific patterns
+chiron init --type=python --with-django
+chiron init --type=python --with-fastapi
 
 # Migrate from .cursor to .claude
 chiron migrate-cursor
@@ -71,15 +76,19 @@ chiron doctor
 After initialization, you'll have:
 
 ```
-your-rails-app/
+your-project/
 ├── .claude/
 │   ├── commands/
 │   │   ├── workflows/      # Development workflows
 │   │   │   ├── create-prd.md
 │   │   │   ├── generate-tasks.md
-│   │   │   └── process-tasks.md
+│   │   │   ├── process-tasks.md
+│   │   │   ├── debug-python.md    # Python debugging (Python projects)
+│   │   │   ├── python-refactor.md # Python refactoring (Python projects)
+│   │   │   └── flask-development.md # Flask patterns (Flask projects)
 │   │   ├── conventions/    # Language/framework rules
-│   │   │   └── rails.md
+│   │   │   ├── rails.md    # Rails-specific
+│   │   │   └── python.md   # Python-specific
 │   │   ├── context/        # Context commands
 │   │   │   ├── quickstart.md
 │   │   │   └── catchup.md
@@ -88,7 +97,8 @@ your-rails-app/
 │   │   │   └── template.md
 │   │   └── quality/        # Quality assurance
 │   │       ├── pre-commit.md
-│   │       └── test-driven.md
+│   │       ├── test-driven.md
+│   │       └── python-testing.md  # Python testing (Python projects)
 │   └── settings.json       # Claude permissions
 ├── CLAUDE.md              # Project-specific Claude instructions
 ├── tasks/                 # PRDs and task lists
@@ -132,6 +142,39 @@ After setup, you can tell Claude:
 - "Catchup" (for project status)
 - "Update the journal"
 - "Run pre-commit checks"
+
+### Language-Specific Commands
+
+**Rails:**
+- "Run RuboCop on this file"
+- "Generate an RSpec test"
+- "Create a Rails migration"
+
+**Python:**
+- "Format this with Black"
+- "Create a pytest fixture"
+- "Generate a Django model"
+- "Debug this async function"
+- "Refactor this class using SOLID principles"
+- "Add type hints to this function"
+
+## Supported Project Types
+
+### Rails Projects
+- Full Rails conventions and best practices
+- RSpec testing patterns
+- Hotwire/Stimulus integration
+- ViewComponent support (optional)
+- RuboCop for code quality
+
+### Python Projects
+- Auto-detects Django, FastAPI, Flask, or generic Python
+- pytest testing patterns with fixtures and parametrization
+- Black/flake8/mypy for code quality and type checking
+- Framework-specific templates (Django ORM, FastAPI async, Flask blueprints)
+- Debugging workflows with pdb and logging
+- Refactoring patterns and SOLID principles
+- Virtual environment and dependency management best practices
 
 ## Customization
 

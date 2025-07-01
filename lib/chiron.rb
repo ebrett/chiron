@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'chiron/version'
+require_relative 'chiron/project_config'
 require_relative 'chiron/cli'
 
 module Chiron

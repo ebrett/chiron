@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors = ['Brett McHargue']
   spec.email = ['ebrett@users.noreply.github.com']
 
-  spec.summary = 'Initialize Claude AI workflow for Rails projects'
+  spec.summary = 'Initialize Claude AI workflow for Rails and Python projects'
   spec.description = 'A Ruby gem that sets up Claude AI development workflows, PRD templates, ' \
-                     'and journaling system for Rails projects'
+                     'and journaling system for Rails and Python projects'
   spec.homepage = 'https://github.com/ebrett/chiron'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'
