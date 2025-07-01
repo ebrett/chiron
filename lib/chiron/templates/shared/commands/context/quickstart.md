@@ -15,16 +15,21 @@ Use this command to quickly get up to speed with the current project state.
    git branch --show-current
    ```
 
-3. **Review Recent Work**
+3. **Get Branch Context**
+   - Run `/branch-context` command if not on main branch
+   - Understand current branch purpose and progress
+   - Check for any uncommitted work or stashes
+
+4. **Review Recent Work**
    - READ: docs/development_journal.md (last 3 entries)
    - Check for active tasks in /tasks/ directory
 
-4. **Quick Test Status**
+5. **Quick Test Status**
    ```bash
    bin/rspec --fail-fast
    ```
 
-5. **Check Code Quality**
+6. **Check Code Quality**
    ```bash
    bin/rubocop --format simple | tail -20
    ```

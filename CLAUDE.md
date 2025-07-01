@@ -98,11 +98,40 @@ lib/
 - Test CLI commands with temporary directories
 - Follow RSpec best practices
 
+## Branch Management and Claude Sessions
+
+### Branch Naming Conventions
+- `feature/[description]` - New functionality (e.g., `feature/python-support`)
+- `bugfix/[description]` - Bug fixes (e.g., `bugfix/template-loading`)
+- `hotfix/[description]` - Urgent production fixes
+- `experiment/[description]` - Exploratory work
+
+### Claude Session Continuity
+- **Starting Sessions**: Always run `/quickstart` to get current context
+- **Branch Work**: Use `/branch-context` when working on feature branches
+- **Progress Tracking**: Update development journal for significant changes
+- **Branch Switching**: Document current state before switching branches
+
+### Development Journal Usage
+- Include branch name in all journal entries
+- Update "Active Branches & Ownership" section when creating/merging branches
+- Link journal entries to related PRD files
+- Document architectural decisions and reasoning
+
+### Branch Workflow
+1. Create branch from updated main: `git checkout -b feature/description`
+2. Document branch purpose in development journal
+3. Make initial empty commit with context
+4. Develop with frequent commits and journal updates
+5. Use `/catchup` and `/branch-context` for status updates
+6. Complete pre-commit checklist before merging
+
 ## Important Reminders
 
 - Always run tests before committing
-- Use semantic commit messages
+- Use semantic commit messages with branch context
 - Update the development journal for significant changes
 - Follow the pre-commit checklist in `.claude/commands/quality/pre-commit.md`
+- Use branch management workflows for feature development
 - Update CHANGELOG.md for notable changes
 - Test gem building and installation locally before releasing

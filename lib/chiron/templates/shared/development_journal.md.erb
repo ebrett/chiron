@@ -8,12 +8,18 @@ This journal tracks significant development work, bug fixes, and feature impleme
 
 ## Active Branches & Ownership
 - `main`: Stable branch for production releases
-- `[feature-branch]`: [Developer Name] - [Feature description]
+- `[feature-branch]`: [Developer Name] - [Feature description] - [Created YYYY-MM-DD]
+
+### Branch Tracking Guidelines
+- Always update this section when creating/merging branches
+- Include branch purpose, owner, and creation date
+- Link to related PRD files when applicable
+- Note dependencies between branches
 
 ---
 
 ## <%= Date.today.strftime('%Y-%m-%d') %> - Initial Setup
-**Developer(s)**: [Your Name] & Claude Code | **Context**: Project initialization
+**Developer(s)**: [Your Name] & Claude Code | **Branch**: main | **Context**: Project initialization
 
 ### What Was Done
 - Initialized Rails <%= Rails.version rescue "8.0.2" %> application
@@ -51,7 +57,7 @@ This journal tracks significant development work, bug fixes, and feature impleme
 Journal Entry Template - Copy for new entries:
 
 ## [YYYY-MM-DD] - [Brief Summary Title]
-**Developer(s)**: [Name] | **Context**: [How work was initiated]
+**Developer(s)**: [Name] | **Branch**: [branch-name] | **Context**: [How work was initiated]
 
 ### What Was Done
 - [Specific actions taken]

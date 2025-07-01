@@ -6,6 +6,7 @@ Chiron is a Ruby gem that helps Rails and Python developers set up Claude AI wor
 ---
 
 ## 2025-07-01 - Major Enhancement: Comprehensive Python Project Support
+**Developer(s)**: Claude Code | **Branch**: main | **Context**: User request for Python support
 
 ### What was accomplished today:
 - **Major Feature Release**: Added complete Python project support to Chiron gem
@@ -87,6 +88,7 @@ Chiron is a Ruby gem that helps Rails and Python developers set up Claude AI wor
 ---
 
 ## 2025-01-21 - Initial Setup and Module Rename
+**Developer(s)**: Claude Code | **Branch**: main | **Context**: Initial gem development
 
 ### What was accomplished today:
 - Set up complete gem development infrastructure

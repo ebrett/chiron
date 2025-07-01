@@ -22,7 +22,12 @@ Use this when the user asks "catchup", "where are we", or wants a project status
    git log --oneline -5
    ```
 
-4. **Test Status**
+4. **Get Branch Context**
+   - Run `/branch-context` command for detailed branch information
+   - Check branch purpose and progress
+   - Review commits unique to this branch
+
+5. **Test Status**
    ```bash
    bin/rspec --format progress | tail -5
    ```
