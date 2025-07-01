@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-07-01
+
+### Added
+
+#### Branch Tracking for Claude Sessions
+- **`/branch-context` Command**: Comprehensive branch information for Claude session continuity
+- **Branch Management Workflow**: Complete procedures for creating, switching, and managing Git branches
+- **Enhanced Context Commands**: Updated `/quickstart` and `/catchup` with branch awareness
+- **Development Journal Integration**: Branch tracking sections and guidelines for documentation
+- **Session Continuity**: Workflows for maintaining context across Claude sessions and branch switches
+
+#### New Workflow Templates
+- **Branch Context** (`shared/commands/context/branch-context.md`): Detailed branch information and progress tracking
+- **Branch Management** (`shared/commands/workflows/branch-management.md`): Complete branch lifecycle management
+
+#### Enhanced Documentation
+- **CLAUDE.md**: Added branch management section with naming conventions and session continuity guidelines
+- **Development Journal Template**: Enhanced with branch tracking fields and ownership documentation
+- **Context Commands**: Integrated branch awareness into existing workflow commands
+
+### Enhanced
+
+#### Session Management
+- **Context Continuity**: Improved Claude session startup with branch context
+- **Progress Tracking**: Better documentation of branch work and ownership
+- **Collaboration**: Enhanced handoff procedures and shared understanding patterns
+
 ## [0.2.0] - 2025-07-01
 
 ### Added
