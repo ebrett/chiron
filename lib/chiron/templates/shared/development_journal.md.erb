@@ -3,7 +3,7 @@
 This journal tracks significant development work, bug fixes, and feature implementations for <%= @project_name %>.
 
 ## Recent Contributors (Last 30 Days)
-- **[Your Name]**: Project owner, initial setup
+- **<%= @user_name %>**: Project owner, initial setup
 - **Claude Code**: AI-assisted development
 
 ## Active Branches & Ownership
@@ -19,11 +19,12 @@ This journal tracks significant development work, bug fixes, and feature impleme
 ---
 
 ## <%= Date.today.strftime('%Y-%m-%d') %> - Initial Setup
-**Developer(s)**: [Your Name] & Claude Code | **Branch**: main | **Context**: Project initialization
+**Developer(s)**: <%= @user_name %> & Claude Code | **Branch**: main | **Context**: Project initialization
 
 ### What Was Done
-- Initialized Rails <%= Rails.version rescue "8.0.2" %> application
-- Set up Claude workflow with claude-rails-setup gem
+<% if @project_type == :rails %>
+- Initialized Rails <%= defined?(Rails) ? Rails.version : "8.0+" %> application
+- Set up Claude workflow with Chiron gem
 - Created initial project structure
 - Configured development environment
 
@@ -33,7 +34,7 @@ This journal tracks significant development work, bug fixes, and feature impleme
 - Setting up for collaborative development
 
 ### Technical Details
-- Rails <%= Rails.version rescue "8.0.2" %> with PostgreSQL database
+- Rails <%= defined?(Rails) ? Rails.version : "8.0+" %> with PostgreSQL database
 - Hotwire (Turbo + Stimulus) for frontend interactivity
 - TailwindCSS for styling
 - RSpec for testing framework
@@ -50,6 +51,88 @@ This journal tracks significant development work, bug fixes, and feature impleme
 - Set up continuous integration
 - Implement initial models based on requirements
 - Create first PRD for core functionality
+<% elsif @project_type == :python %>
+- Initialized Python project
+<% if @python_framework == :django %>
+- Set up Django project structure
+<% elsif @python_framework == :fastapi %>
+- Set up FastAPI project structure
+<% elsif @python_framework == :flask %>
+- Set up Flask project structure
+<% else %>
+- Set up generic Python project structure
+<% end %>
+- Set up Claude workflow with Chiron gem
+- Configured development environment
+
+### Why It Was Done
+- Starting new Python project with AI-assisted development workflow
+- Establishing consistent development patterns from the beginning
+- Setting up for collaborative development
+
+### Technical Details
+<% if @python_framework == :django %>
+- Django framework for web development
+- PostgreSQL database (recommended)
+- Django REST framework for APIs
+<% elsif @python_framework == :fastapi %>
+- FastAPI framework for high-performance APIs
+- Pydantic for data validation
+- SQLAlchemy for database ORM
+<% elsif @python_framework == :flask %>
+- Flask framework for web development
+- SQLAlchemy for database ORM
+- Flask-RESTful for API development
+<% else %>
+- Python 3.x+ project structure
+<% end %>
+- pytest for testing framework
+- black for code formatting
+- flake8 for linting
+- Claude AI workflow integration
+
+### Results
+- ✅ Python project structure created
+- ✅ Claude workflow initialized with commands and templates
+- ✅ Development journal started
+- ✅ Git repository initialized
+
+### Next Steps
+- Set up virtual environment and install dependencies
+- Configure database and create initial models
+- Set up continuous integration
+- Implement core functionality based on requirements
+- Create first PRD for feature development
+<% else %>
+- Initialized project structure
+- Set up Claude workflow with Chiron gem
+- Created initial project structure
+- Configured development environment
+
+### Why It Was Done
+- Starting new project with AI-assisted development workflow
+- Establishing consistent development patterns from the beginning
+- Setting up for collaborative development
+
+### Technical Details
+- Project initialized with Claude AI workflow integration
+- Development journal and task tracking system
+- Command templates for consistent workflows
+- Quality assurance and testing patterns
+
+### Results
+- ✅ Project structure created
+- ✅ Claude workflow initialized with commands and templates
+- ✅ Development journal started
+- ✅ Git repository initialized
+
+### Next Steps
+- Set up development dependencies
+- Configure testing framework
+- Set up continuous integration
+- Implement core functionality based on requirements
+- Create first PRD for feature development
+<% end %>
 
 ---
 

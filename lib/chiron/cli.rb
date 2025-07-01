@@ -15,6 +15,7 @@ module Chiron
 
     desc 'init', 'Initialize Claude workflow in current project'
     option :project_name, type: :string, desc: 'Project name for CLAUDE.md'
+    option :user_name, type: :string, desc: 'User name for templates. Auto-detected from git config if not specified'
     option :type, type: :string, desc: 'Project type (rails, python). Auto-detected if not specified'
     option :with_oauth, type: :boolean, default: false, desc: 'Include OAuth workflow examples'
     option :with_viewcomponents, type: :boolean, default: false, desc: 'Include ViewComponent rules'
@@ -27,6 +28,7 @@ module Chiron
       @prompt = TTY::Prompt.new
       @project_type = determine_project_type
       @project_name = options[:project_name] || prompt_for_project_name
+      @user_name = options[:user_name] || detect_user_name
 
       # Set up project configuration
       if @project_type == :python
@@ -374,6 +376,21 @@ module Chiron
     def python_package_exists?
       File.exist?('requirements.txt') || File.exist?('pyproject.toml') ||
         File.exist?('setup.py') || File.exist?('Pipfile')
+    end
+
+    def detect_user_name
+      # Try git config first
+      git_user = `git config user.name 2>/dev/null`.strip
+      return git_user if !git_user.empty?
+
+      # Fall back to environment variables
+      env_user = ENV['USER'] || ENV['USERNAME']
+      return env_user if env_user && !env_user.empty?
+
+      # Last resort: prompt the user
+      @prompt.ask('What is your name?', default: 'Developer')
+    rescue StandardError
+      'Developer'
     end
 
     def error(message)
